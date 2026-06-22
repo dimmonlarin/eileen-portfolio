@@ -191,8 +191,8 @@ function ProcessArtifact({
             {artifact.caption}
           </p>
         </div>
-        <div className="bg-paper-2/50 p-4 md:p-8">
-          <div className="space-y-4 max-w-[62ch] mx-auto">
+        <div>
+          <div className="space-y-4">
             {mediaArray.map((media, idx) => {
               const isVideo = /\.(mov|mp4|webm|ogg)$/i.test(media);
               return (

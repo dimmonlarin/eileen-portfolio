@@ -186,7 +186,7 @@ export const projects: Project[] = [
     cardSummary:
       "Led strategy and design for Smart Bundles, a new crypto investment product that drove $200K in revenue and a 4% engagement lift in its first month by simplifying how users allocate assets.",
     cover:
-      "/artifacts/bake-smart.gif",
+      "/artifacts/bake-smart.mp4",
     eyebrow: "Bake · Fintech · 2024",
     heroTitle: "Designing for retention",
     heroEmphasis: "in a down market",

@@ -9,6 +9,7 @@ import { Fragment, useEffect } from "react";
 import { projects, contact, type SectionBlock } from "@/data/projects";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { CoverMedia } from "@/components/CoverMedia";
 import { ArrowLeft, ArrowRight, Lock } from "lucide-react";
 
 export default function CaseStudy() {
@@ -105,7 +106,7 @@ export default function CaseStudy() {
           {/* cover */}
           <section className="container-cs mt-12 md:mt-16">
             <div className="aspect-[16/9] overflow-hidden bg-paper-2 shadow-none">
-              <img
+              <CoverMedia
                 src={p.cover}
                 alt={p.title}
                 className="h-full w-full object-cover shadow-none border-0 block"
@@ -200,13 +201,13 @@ function ProcessArtifact({
                   {isVideo ? (
                     <video
                       src={media}
-                      alt={altArray[idx] || ""}
+                      aria-label={altArray[idx] || ""}
                       className="w-full border border-line bg-white"
                       controls
                       autoPlay
                       muted
                       loop
-                      loading="lazy"
+                      playsInline
                     />
                   ) : (
                     <img

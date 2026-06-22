@@ -8,6 +8,7 @@ import { useReveal } from "@/hooks/useReveal";
 import { projects, aboutIntro, aboutStats, recognitionSkills } from "@/data/projects";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { CoverMedia } from "@/components/CoverMedia";
 import { Lock, ArrowUpRight } from "lucide-react";
 
 export default function Home() {
@@ -119,7 +120,7 @@ function WorkCard({
     >
       {/* cover */}
       <div className="relative aspect-[16/10] overflow-hidden bg-paper-2">
-        <img
+        <CoverMedia
           src={p.cover}
           alt={p.title}
           loading="lazy"

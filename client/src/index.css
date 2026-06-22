@@ -1,0 +1,175 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/*
+  DESIGN SYSTEM — Eileen Yu Portfolio (Reference-driven v2)
+  Restrained Swiss/editorial product-design portfolio.
+  - Bordered editorial grids (hairline borders are the primary structural device)
+  - Warm off-white canvas (#F8F7F4) with dark (#0F0F0F) inversion sections
+  - Inter only; hierarchy via weight (300 large / 600 emphasis), not color
+  - Tiny uppercase labels, wide tracking (0.12em)
+  - Outcome-first, quiet, content-forward. Restraint signals seniority.
+*/
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-paper: var(--bg);
+  --color-paper-2: var(--bg-2);
+  --color-line: var(--border-c);
+  --color-dark: var(--dark);
+  --color-dark-2: var(--dark-2);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+:root {
+  /* Reference palette */
+  --ink: #111111;
+  --ink-2: #555555;
+  --ink-3: #999999;
+  --bg: #f8f7f4;
+  --bg-2: #efede8;
+  --white: #ffffff;
+  --dark: #0f0f0f;
+  --dark-2: #1a1a1a;
+  --border-c: #e2e0db;
+
+  --radius: 0.125rem;
+
+  /* Map shadcn tokens onto the editorial palette */
+  --background: #f8f7f4;
+  --foreground: #111111;
+  --card: #ffffff;
+  --card-foreground: #111111;
+  --popover: #ffffff;
+  --popover-foreground: #111111;
+  --primary: #111111;
+  --primary-foreground: #f8f7f4;
+  --secondary: #efede8;
+  --secondary-foreground: #111111;
+  --muted: #efede8;
+  --muted-foreground: #555555;
+  --accent: #efede8;
+  --accent-foreground: #111111;
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: #ffffff;
+  --border: #e2e0db;
+  --input: #e2e0db;
+  --ring: #999999;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  a[href] {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container-ed {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+    max-width: 1200px;
+  }
+  @media (min-width: 768px) {
+    .container-ed {
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+  }
+  .container-cs {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+    max-width: 1100px;
+  }
+  @media (min-width: 768px) {
+    .container-cs {
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+  }
+
+  /* Tiny uppercase editorial label */
+  .label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+}
+
+@layer utilities {
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.6s var(--ease-out),
+      transform 0.6s var(--ease-out);
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <rect width="1200" height="760" fill="#fff"/>
+  <text x="48" y="66" font-family="Inter, Arial" font-size="28" fill="#111">Business banking service journey</text>
+  <text x="48" y="100" font-family="Inter, Arial" font-size="14" fill="#777">Journey map artifact · customer and operations touchpoints</text>
+  <g font-family="Inter, Arial" font-size="14" fill="#111" stroke="#d8d6d1">
+    <rect x="60" y="150" width="1080" height="470" fill="#f8f7f4"/>
+    <line x1="60" y1="240" x2="1140" y2="240"/>
+    <line x1="60" y1="330" x2="1140" y2="330"/>
+    <line x1="60" y1="445" x2="1140" y2="445"/>
+    <line x1="276" y1="150" x2="276" y2="620"/>
+    <line x1="492" y1="150" x2="492" y2="620"/>
+    <line x1="708" y1="150" x2="708" y2="620"/>
+    <line x1="924" y1="150" x2="924" y2="620"/>
+    <text x="88" y="202" font-size="16">Apply</text><text x="304" y="202" font-size="16">Verify</text><text x="520" y="202" font-size="16">Review</text><text x="736" y="202" font-size="16">Approve</text><text x="952" y="202" font-size="16">Activate</text>
+    <text x="86" y="288">Customer touchpoint</text><text x="86" y="388">Operational handoff</text><text x="86" y="516">Opportunity</text>
+    <circle cx="380" cy="288" r="10" fill="#111"/><circle cx="620" cy="288" r="10" fill="#111"/><circle cx="980" cy="288" r="10" fill="#111"/>
+    <path d="M300 390 C420 470, 520 300, 650 390 S880 460, 1030 360" fill="none" stroke="#111" stroke-width="2"/>
+    <rect x="300" y="480" width="150" height="70" fill="#fff"/><text x="322" y="520">Standardize</text>
+    <rect x="520" y="480" width="150" height="70" fill="#fff"/><text x="548" y="520">Automate</text>
+    <rect x="740" y="480" width="150" height="70" fill="#fff"/><text x="776" y="520">Clarify</text>
+    <rect x="960" y="480" width="150" height="70" fill="#fff"/><text x="988" y="520">Measure</text>
+  </g>
+</svg>

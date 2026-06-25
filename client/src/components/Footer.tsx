@@ -45,7 +45,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-20 md:mt-28 flex flex-col md:flex-row md:items-center justify-between gap-4 pt-8 border-t border-paper/10">
-          <p className="text-[12px] text-paper/40">© {year} Eileen Yu</p>
+          <p className="text-[12px] text-paper/40">© {year} Eileen Yu</p> <p className="text-[12px] text-paper/30 mt-1"> ☕ Built with coffee and AI. AI wrote some code—I made sure it looked good. </p>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="text-[12px] text-paper/40 hover:text-paper transition-colors"

@@ -178,7 +178,7 @@ function ProcessArtifact({
   const altArray = Array.isArray(artifact.alt) ? artifact.alt : [artifact.alt];
 
   return (
-    <section className="container-cs mt-12 md:mt-16">
+    <section className="mt-12 md:mt-16">
       <div className="grid md:grid-cols-[240px_1fr] border border-line bg-paper">
         <div className="border-b md:border-b-0 md:border-r border-line p-6 md:p-8">
           <p className="label mb-4">Process artifact</p>
@@ -193,7 +193,7 @@ function ProcessArtifact({
           </p>
         </div>
         <div>
-          <div className="space-y-4">
+          <div className="space-y-4 w-full">
             {mediaArray.map((media, idx) => {
               const isVideo = /\.(mov|mp4|webm|ogg)$/i.test(media);
               return (

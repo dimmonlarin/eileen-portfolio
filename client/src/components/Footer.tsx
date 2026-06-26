@@ -46,10 +46,7 @@ export default function Footer() {
 
         <div className="mt-20 md:mt-28 flex flex-col md:flex-row md:items-end justify-between gap-4 pt-8 border-t border-paper/10">
   <div className="text-[12px] text-paper/40">
-    <p>© {year} Eileen Yu</p>
-    <p className="mt-1 text-paper/30">
-      ☕ Built with coffee and AI. AI wrote some code—I made sure it looked good.
-    </p>
+    <p>© {year} Eileen Yu ☕ Built with coffee and AI. AI wrote some code—I made sure it looked good. </p>
   </div>
 
   <button

@@ -229,6 +229,246 @@ function ProcessArtifact({
 
 /* ── Section renderer ── */
 function Section({ block }: { block: SectionBlock }) {
+  if (block.kind === "impact") {
+    return (
+      <section>
+        <SectionHead label={block.label} heading={block.heading} body={block.body} />
+        <div className="mt-6 grid gap-6 md:grid-cols-[200px_1fr] md:gap-12">
+          <div />
+          <div className="space-y-10">
+            <div className="space-y-5 max-w-[40ch]">
+              <div className="text-3xl md:text-[3.5rem] leading-none font-light tracking-tight text-ink whitespace-nowrap">
+                {block.highlight}
+              </div>
+              <p className="text-[15px] md:text-base leading-relaxed text-ink-2">
+                {block.caption}
+              </p>
+            </div>
+            <div className="rounded-sm border border-line bg-paper p-6">
+              <p className="label mb-5">{block.subheading}</p>
+              <ul className="space-y-4 text-[15px] md:text-base text-ink-2 leading-relaxed">
+                {block.bullets.map((bullet) => (
+                  <li key={bullet} className="border-b border-line pb-4 last:border-b-0 last:pb-0">
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (block.kind === "compare") {
+    return (
+      <section>
+        <SectionHead label={block.label} heading={block.heading} body={block.body} />
+        <div className="mt-10">
+          <div className="mt-10 grid gap-10 xl:grid-cols-[1fr_1fr] items-start">
+            <div className="space-y-8">
+              <div className="flex items-center gap-3">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-ink-3">
+                  {block.before.title}
+                </p>
+                <span className="flex-1 h-px bg-line" />
+                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-ink-3">
+                  Touchpoint
+                </p>
+              </div>
+              <div className="space-y-2">
+                {block.before.touchpoints.map((tp) => (
+                  <div
+                    key={tp.name}
+                    className="flex items-center justify-between gap-3 rounded-lg border border-dashed border-line bg-white/80 px-3 py-2.5 text-sm text-ink leading-relaxed"
+                  >
+                    <span className="font-medium text-ink">{tp.name}</span>
+                    <span className="text-[13px] text-ink-3">{tp.level}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-8 xl:hidden">
+              <div className="pt-8">
+                <p className="label mb-4">What was breaking</p>
+                <div className="space-y-4">
+                  {block.before.problems.map((problem) => (
+                    <div key={problem.n} className="flex gap-4 text-[15px] text-ink-2 leading-relaxed">
+                      <span className="min-w-[1.5rem] font-semibold text-ink-3">{problem.n}.</span>
+                      <p>{problem.text}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-8">
+              <div className="flex items-center gap-3">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-blue-700">
+                  {block.after.label}
+                </p>
+                <span className="flex-1 h-px bg-line" />
+              </div>
+              <div className="rounded-[18px] border border-blue-200 bg-blue-50 p-6">
+                <h3 className="text-xl font-semibold tracking-tight text-ink leading-tight mb-3">
+                  {block.after.heading}
+                </h3>
+                <p className="text-[15px] text-ink-2 leading-relaxed">
+                  {block.after.body}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-10 grid gap-10 xl:grid-cols-[1fr_1fr]">
+            <div className="pt-8 hidden xl:block">
+              <p className="label mb-4">What was breaking</p>
+              <div className="space-y-4">
+                {block.before.problems.map((problem) => (
+                  <div key={problem.n} className="flex gap-4 text-[15px] text-ink-2 leading-relaxed">
+                    <span className="min-w-[1.5rem] font-semibold text-ink-3">{problem.n}.</span>
+                    <p>{problem.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="pt-8">
+              <p className="label mb-4">What we changed</p>
+              <div className="space-y-4">
+                {block.after.changes.map((change) => (
+                  <div key={change.n} className="flex gap-4 text-[15px] text-ink-2 leading-relaxed">
+                    <span className="min-w-[1.5rem] font-semibold text-blue-700">{change.n}.</span>
+                    <p>{change.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        <p className="mt-10 text-2xl md:text-[2rem] font-light tracking-tight text-ink leading-[1.2] max-w-[56ch]">
+          {block.conclusion}
+        </p>
+        <div className="mt-16 space-y-8">
+          <div className="text-[11px] font-semibold uppercase tracking-[0.24em] text-ink-3">
+            The redesigned experience
+          </div>
+          <div className="overflow-hidden rounded-[24px] border border-line bg-paper">
+            <img
+              src="/artifacts/Confidential.png"
+              alt="Confidential redesigned experience"
+              className="w-full block"
+            />
+          </div>
+          <p className="text-[15px] text-ink-2 leading-relaxed">
+            Final UI withheld for confidentiality — happy to walk through the screens on a call.
+          </p>
+        </div>
+      </section>
+    );
+  }
+
+  if (block.kind === "cards") {
+    const hasBody = block.body.length > 0 || (block.bullets && block.bullets.length > 0);
+
+    return (
+      <section className="-mt-8">
+        {block.label || block.heading ? (
+          <SectionHead label={block.label} heading={block.heading} body={block.body} />
+        ) : null}
+        {hasBody ? (
+          <div className="mt-8 space-y-10">
+            {block.bullets?.length ? (
+              <div className="max-w-[62ch] text-[15px] md:text-base text-ink-2 leading-relaxed">
+                <ul className="space-y-3">
+                  {block.bullets.map((bullet) => (
+                    <li key={bullet} className="flex gap-3">
+                      <span className="mt-1 h-1.5 w-1.5 rounded-full bg-ink" />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
+            <div className="grid gap-6 lg:grid-cols-4">
+              {block.items.slice(0, 4).map((item) => (
+                <div key={item.label} className="rounded-sm border border-line bg-paper p-6">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.24em] text-ink-3 mb-2">
+                    {item.label}
+                  </div>
+                  <h3 className="text-xl font-semibold tracking-tight text-ink leading-tight mb-3">
+                    {item.title}
+                  </h3>
+                  {typeof item.caption === "string" ? (
+                    <p className="text-[15px] text-ink-2 leading-relaxed">
+                      {item.caption}
+                    </p>
+                  ) : (
+                    <ul className="list-disc pl-4 space-y-2 text-[14px] text-ink-2 leading-relaxed">
+                      {item.caption.map((line, idx) => (
+                        <li key={idx}>{line}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
+            </div>
+            {block.items.length > 4 ? (
+              <div className="grid gap-6">
+                {block.items.slice(4).map((item) => (
+                  <div key={item.label} className="rounded-sm border border-line bg-ink/5 p-6">
+                    <div className="text-[11px] font-semibold uppercase tracking-[0.24em] text-ink-3 mb-2">
+                      {item.label}
+                    </div>
+                    <h3 className="text-xl font-semibold tracking-tight text-ink leading-tight mb-3">
+                      {item.title}
+                    </h3>
+                    {typeof item.caption === "string" ? (
+                      <p className="text-[15px] text-ink-2 leading-relaxed">
+                        {item.caption}
+                      </p>
+                    ) : (
+                      <ul className="list-disc pl-4 space-y-2 text-[14px] text-ink-2 leading-relaxed">
+                        {item.caption.map((line, idx) => (
+                          <li key={idx}>{line}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        ) : (
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {block.items.map((item) => (
+              <div key={item.label} className="rounded-sm border border-line bg-paper p-8">
+                <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-ink-3 mb-4">
+                  {item.label}
+                </p>
+                <h3 className="text-3xl font-semibold tracking-tight text-ink leading-tight mb-3">
+                  {item.title}
+                </h3>
+                {typeof item.caption === "string" ? (
+                  <p className="text-[15px] text-ink-2 leading-relaxed">
+                    {item.caption}
+                  </p>
+                ) : (
+                  <ul className="list-disc pl-4 space-y-2 text-[14px] text-ink-2 leading-relaxed">
+                    {item.caption.map((line, idx) => (
+                      <li key={idx}>{line}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+    );
+  }
+
   if (block.kind === "outcome") {
     return (
       <section>

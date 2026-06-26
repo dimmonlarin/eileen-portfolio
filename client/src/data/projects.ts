@@ -21,11 +21,47 @@ export type SectionBlock =
       items: { stat: string; body: string }[];
     }
   | {
+      kind: "cards";
+      label: string;
+      heading: string;
+      body: string[];
+      bullets?: string[];
+      items: { label: string; title: string; caption: string | string[] }[];
+    }
+  | {
+      kind: "compare";
+      label: string;
+      heading: string;
+      body: string[];
+      before: {
+        title: string;
+        touchpoints: { name: string; level: string }[];
+        problems: { n: number | string; text: string }[];
+      };
+      after: {
+        label: string;
+        heading: string;
+        body: string;
+        changes: { n: number | string; text: string }[];
+      };
+      conclusion: string;
+    }
+  | {
       kind: "outcome";
       label: string;
       heading: string;
       body: string[];
       items: Metric[];
+    }
+  | {
+      kind: "impact";
+      label: string;
+      heading: string;
+      body: string[];
+      subheading: string;
+      highlight: string;
+      caption: string;
+      bullets: string[];
     };
 
 export type Project = {
@@ -54,10 +90,233 @@ export type Project = {
 };
 
 export const projects: Project[] = [
-  // 01, META (locked / NDA)
+  // 01, META (AI)
+  {
+    slug: "meta-bidding-northstar",
+    index: "01",
+    company: "Meta",
+    domain: ["AI", "Alignment", "Strategy"],
+    year: "2026",
+    title: "AI-Accelerated Bidding Northstar Vision",
+    cardSummary:
+      "Led a one-week cross-functional sprint to unify Meta Ads Manager bidding strategy, secure executive alignment, and accelerate the roadmap by almost a year.",
+    cover: "/artifacts/meta.png",
+    eyebrow: "Meta · Strategy · AI",
+    heroTitle: "Aligning four product organizations",
+    heroEmphasis: "around one long-term bidding vision",
+    lead: "I led a rapid, AI-enabled design sprint to unify Ads Manager bidding strategy, align 15–20 stakeholders, and move the product roadmap from 2027 to H2 2026.",
+    stats: [
+      { value: "1 week", label: "Sprint duration" },
+      { value: "4", label: "Product teams aligned" },
+      { value: "15–20", label: "Stakeholders involved" },
+      { value: "1 year", label: "Roadmap acceleration" },
+    ],
+    meta: [
+      { label: "My role", value: "Lead Product Designer" },
+      { label: "Scope", value: "Strategy · UX · Cross-functional alignment" },
+      { label: "Team", value: "Design · Research · PM · Engineering · Data" },
+      { label: "Platform", value: "Meta Ads Manager" },
+    ],
+    sections: [
+      {
+        kind: "text",
+        label: "01, The problem",
+        heading: "Four teams, four parallel bets.",
+        body: [
+          "Four product organizations were advancing parallel initiatives without a shared direction, making it difficult to create a coherent Ads Manager bidding strategy.",
+        ],
+      },
+      {
+        kind: "text",
+        label: "02, Creating alignment",
+        heading: "Aligning 4 organizations with AI",
+        body: [
+          "Teams were initially stuck in a dependency loop: Product Managers were waiting for a brief, while designers were waiting for product direction.",
+          "To break the deadlock, I assigned clear ownership, timelines and introduced an AI-assisted workflow that enabled teams to work in parallel rather than through traditional handoffs.",
+          "This allowed business, user, and technical perspectives to converge simultaneously, accelerating alignment and concept development.",
+        ],
+      },
+      {
+        kind: "cards",
+        label: "",
+        heading: "",
+        body: [],
+        items: [
+          {
+            label: "UXR · Product Designers",
+            title: "Manus, NotebookLM",
+            caption: [
+              "UXRs synthesised historical research and surfaced insights.",
+              "Product designers, content designers consolidated strategy docs.",
+              "Built our product brief and presentations.",
+            ],
+          },
+          {
+            label: "Product Designers · Content Designers",
+            title: "Claude, Manus, Protohub",
+            caption: [
+              "Claude, Manus to create concepts rapidly for diverging product needs.",
+              "Manus enabled content designers to generate or edit designs directly.",
+              "Protohub for versioning and XFN review, comments.",
+            ],
+          },
+          {
+            label: "Product Designers · Content Designers · UXR",
+            title: "FigmaMake",
+            caption: [
+              "Allowing all of us to collaborate and refine end-to-end high fidelity interactive prototypes for user testing.",
+            ],
+          },
+        ],
+      },
+      {
+        kind: "text",
+        label: "03, What research revealed",
+        heading: "The real problem wasn’t just UX.",
+        body: [
+          "Recurring themes: fear of delivery drops, market uncertainty, low confidence in automation, difficulty finding the right controls, and disconnected bidding & budgeting.",
+          "Advertisers didn't need more features or more complicated controls. They needed a simpler, more trustworthy optimization experience.",
+        ],
+      },
+      {
+        kind: "cards",
+        label: "04, Key decisions",
+        heading: "Weeks of alignment, done in one.",
+        body: [
+          "A traditional model would have us working in a sequential, longer process that consists of weeks, instead we did it all in one week.",
+          "Traditional model: PM brief → UXR discovery → Design exploration → Engineering review → Research validation → Alignment and buy-ins.",
+          "What we did instead with AI: Designers, UXRs, Product + Engineers collaborated in parallel to move faster and reduce handoff delays.",
+        ],
+        items: [
+          {
+            label: "Day 1",
+            title: "Kickoff, divergence",
+            caption: [
+              "10+ design concepts",
+              "Design principles",
+              "Product brief skeleton",
+            ],
+          },
+          {
+            label: "Day 2",
+            title: "Convergence",
+            caption: [
+              "3 refined concepts",
+              "Detailed design brief",
+              "Hypothesis",
+            ],
+          },
+          {
+            label: "Day 3 + 4",
+            title: "Quick alignment & iterations",
+            caption: [
+              "Key XFN review & feedbacks",
+              "Iterations",
+            ],
+          },
+          {
+            label: "Day 5",
+            title: "Workshop prep",
+            caption: [
+              "Workshop materials",
+              "More iterations",
+            ],
+          },
+          {
+            label: "Week 2",
+            title: "All XFN workshop",
+            caption: [
+              "Directors & VP reviews",
+              "Workshop & presentation",
+              "Built code-ready finalised designs for user interviews and future quick implementation",
+              "Finalise hypothesis and research plan",
+              "Secured organisational buy-in across the board",
+              "Accelerated roadmap planning",
+            ],
+          },
+        ],
+      },
+      {
+        kind: "compare",
+        label: "05, From fragmented to cohesive",
+        heading: "One flow instead of many.",
+        body: [
+          "Four bidding controls were scattered across campaign and ad-set levels and split across two pages. We redesigned the flow so guidance appears at the decision point, not after it.",
+        ],
+        before: {
+          title: "Before",
+          touchpoints: [
+            { name: "Budget setup", level: "Campaign level" },
+            { name: "Bidding strategy", level: "Ad set level" },
+            { name: "Value strategy", level: "Ad set level" },
+            { name: "Guidance", level: "Budget & after publish" },
+          ],
+          problems: [
+            {
+              n: 1,
+              text: "Advertisers who followed budget-increase recommendations often didn't see the promised gains — eroding trust and reducing adoption.",
+            },
+            {
+              n: 2,
+              text: "The original campaign bid strategy was hard to spot and edit, so users tended to overlook it.",
+            },
+            {
+              n: 3,
+              text: "Performance Goal was a fundamental setting, yet placing it on the next page left 80% of users uncertain how it influenced bidding.",
+            },
+            {
+              n: 4,
+              text: "Splitting bidding strategy and goal amount across two pages created a disconnected experience — users were unsure where to configure their goal, and what value to set.",
+            },
+          ],
+        },
+        after: {
+          label: "After · Northstar",
+          heading: "One simple setup — a unified bidding experience",
+          body: "Surfacing controls with guidance at the touchpoint where it matters most.",
+          changes: [
+            {
+              n: 1,
+              text: "Introduced AI-powered budget and bid recommendations with transparent performance projections. Early testing showed strong interest and higher confidence in the recommendations.",
+            },
+            {
+              n: 2,
+              text: "Consolidated all bidding controls into a single section — easier to discover and edit — and added a Cost vs Volume optimization control so advertisers could clearly express their business goals.",
+            },
+          ],
+        },
+        conclusion: "Together, these changes created a unified, AI-assisted bidding experience — more transparent, more intuitive, and aligned with advertiser intent.",
+      },
+      {
+        kind: "impact",
+        label: "06, Outcome",
+        heading: "A unified vision and a faster roadmap",
+        body: [
+          "The sprint produced shared design principles, secured director and VP sponsorship, and moved a major roadmap milestone forward by roughly a year.",
+          "The work also established a single source of truth for Ads Manager bidding strategy, enabling teams to continue building in alignment rather than in parallel.",
+        ],
+        subheading: "Immediate impact",
+        highlight: "2027 → H2 ’26",
+        caption: "MVP launch pulled forward by roughly a year.",
+        bullets: [
+          "Unified four independent initiatives",
+          "Secured Director & VP sponsorship",
+          "Influenced and accelerated product roadmap",
+          "Established consistency with frameworks & design principles",
+          "Revenue growth opportunities across partner teams",
+        ],
+      },
+    ],
+    quote: {
+      text: "She leveraged AI tools to accelerate concepting and shape early product direction, driving final deliverables, while teaching her engineering partners AI best practices along the way.",
+      attr: "— Nikki Jahangiri, Director of Product Design (Meta)",
+    },
+  },
+
+  // 02, META
   {
     slug: "meta-bidding",
-    index: "01",
+    index: "02",
     company: "Meta",
     domain: ["Monetization", "B2B", "Growth"],
     year: "2025",
@@ -153,32 +412,16 @@ export const projects: Project[] = [
         ],
       },
     ],
-    processArtifacts: [
-      {
-        title: "Ads manager automation recommendations",
-        type: "Guidance",
-        media: "/artifacts/meta-am-table.png",
-        alt: "Ads manager automation recommendations",
-        caption: "Our model provided actionable insights for advertisers to scale their campaigns effectively.",
-      },
-      {
-        title: "Improvements based on experiment learnings.",
-        type: "Iterations",
-        media: "/artifacts/meta-autobid.png",
-        alt: "Autobid interaction flow and UI for automated bidding",
-        caption: "We revisited the designs to make improvements for our next launch. Our new improvements: 1. Recommend a slightly higher budget.  2. Make the budget editable in the guidance.",
-      },
-    ],
     quote: {
       text: "Her product thinking is genuinely systems-oriented. She connects what is happening at the surface level to broader platform strategy and identifies opportunities that others miss. She is not just designing screens. She thinks about how the full ecosystem fits together and how to move it forward in a way that compounds over time.",
       attr:"— Nikki Jahangiri, Director of Product Design (Meta)",
     },
   },
 
-  // 02, BAKE (full case study)
+  // 03, BAKE (full case study)
   {
     slug: "bake-smart-bundles",
-    index: "02",
+    index: "03",
     company: "Bake (CakeDeFi)",
     domain: ["Product & Content Strategy", "Fintech", "Crypto"],
     year: "2024",
@@ -300,10 +543,10 @@ export const projects: Project[] = [
     },
   },
 
-  // 03, OCBC
+  // 04, OCBC
   {
     slug: "ocbc-business-banking",
-    index: "03",
+    index: "04",
     company: "OCBC Bank",
     domain: ["Enterprise", "Banking", "Service Design"],
     year: "2023",
@@ -413,10 +656,10 @@ export const projects: Project[] = [
     ],
   },
 
-  // 04, STORMS
+  // 05, STORMS
   {
     slug: "storms-growth",
-    index: "04",
+    index: "05",
     company: "Storms",
     domain: ["Consumer", "Gamification", "Design Systems"],
     year: "2021",
